@@ -8,7 +8,7 @@ public class Student {
     private int studentId;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth; //vytvorit objekt datum nebo importovat z knihovny
+    private Date dateOfBirth;
     private boolean isTechnicalStudent;
     private boolean isHumanitarianStudent;
     private boolean isCombinedStudent;
@@ -16,7 +16,7 @@ public class Student {
 
     private static int ID_COUNT = 1;
 
-    public enum ZODIAC {
+    private enum ZODIAC {
         ARIES,
         TAURUS,
         GEMINI,
@@ -42,7 +42,7 @@ public class Student {
 
     public boolean wasBornOnLeapYear() {
         try {
-            if (this.isHumanitarianStudent) {
+            if (!this.isHumanitarianStudent) {
                 throw new Exception("Cannot find out.");
             } else {
                 GregorianCalendar cal = new GregorianCalendar();
