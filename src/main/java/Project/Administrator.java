@@ -61,7 +61,12 @@ public class Administrator {
                 } else if (entry.getValue().isHumanitarianStudent()){
                     info = entry.getValue().getZodiacSign();
                 } else {
-                    info = "Student was born on leap year." + entry.getValue().getZodiacSign();
+                    if (entry.getValue().wasBornOnLeapYear()) {
+                        info = "Student was born on leap year.";
+                    } else {
+                        info = "Student was not born on leap year.";
+                    }
+                    info += " " + entry.getValue().getZodiacSign();
                 }
             }
         }
@@ -75,6 +80,7 @@ public class Administrator {
             names.add(entry.getValue().getLastName());
         }
         Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
+        info = names.toString();
         return info;
     }
 

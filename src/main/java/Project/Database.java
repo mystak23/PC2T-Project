@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Database implements IGraphicalInterface {
 
-    private static Scanner scanner;
+    private Scanner scanner;
     private Administrator administrator;
 
     @Override
@@ -60,8 +60,8 @@ public class Database implements IGraphicalInterface {
     public void findStudent() {
         System.out.println("Enter ID: ");
         int studentId = scanner.nextInt();
-        System.out.println("Student successfully found. Info: \n");
         administrator.findStudent(studentId);
+        System.out.println("Student successfully found. Info: \n");
     }
 
     @Override

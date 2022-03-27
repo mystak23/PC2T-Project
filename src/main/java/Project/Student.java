@@ -42,7 +42,7 @@ public class Student {
 
     public boolean wasBornOnLeapYear() {
         try {
-            if (!this.isHumanitarianStudent) {
+            if (this.isHumanitarianStudent) {
                 throw new Exception("Cannot find out.");
             } else {
                 GregorianCalendar cal = new GregorianCalendar();
@@ -116,14 +116,17 @@ public class Student {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        return (prime * this.studentId);
+        final int prime = 596569;
+        return (prime * studentId);
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof Student)) {
+            return false;
+        }
         Student student = (Student) obj;
-        if (this.studentId == student.studentId) {
+        if (this.hashCode() == student.hashCode()) {
             return true;
         } else {
             return false;
@@ -132,30 +135,30 @@ public class Student {
 
     @Override
     public String toString() {
-        String info = studentId + " " + firstName + " " + lastName + " " + dateOfBirth.toString();
+        String info = studentId + "-" + firstName + "-" + lastName + "-" + dateOfBirth.toString();
         if (!marks.isEmpty()) {
-            info += this.getAverage();
+            info += "-" + this.getAverage();
         }
         return info;
     }
 
     public Student(String firstName, String lastName, Date dateOfBirth, boolean isTechnicalStudent, boolean isHumanitarianStudent, boolean isCombinedStudent) {
-        this.studentId = ID_COUNT;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.isTechnicalStudent = isTechnicalStudent;
-        this.isHumanitarianStudent = isHumanitarianStudent;
-        this.isCombinedStudent = isCombinedStudent;
         try {
             if ((isTechnicalStudent && isHumanitarianStudent) || (isTechnicalStudent && isCombinedStudent) || (isHumanitarianStudent && isCombinedStudent)) {
                 throw new Exception("Cannot create such a student.");
             }
+            this.studentId = ID_COUNT;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.dateOfBirth = dateOfBirth;
+            this.isTechnicalStudent = isTechnicalStudent;
+            this.isHumanitarianStudent = isHumanitarianStudent;
+            this.isCombinedStudent = isCombinedStudent;
+            this.marks = new ArrayList<>();
+            ID_COUNT++;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        this.marks = new ArrayList<>();
-        ID_COUNT++;
     }
 
 }
