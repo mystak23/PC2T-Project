@@ -15,11 +15,28 @@ public class Administrator {
     }
 
     public void deleteStudent(int studentId) {
-        listOfStudents.remove(listOfStudents.get(studentId));
+        try {
+            if (listOfStudents.containsKey(studentId)) {
+                listOfStudents.remove(listOfStudents.get(studentId));
+            } else {
+                throw new Exception("No such student.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String findStudent(int studentId) {
-        String info = listOfStudents.get(studentId).toString();
+        String info = "";
+        try {
+            if (listOfStudents.containsKey(studentId)) {
+                info = listOfStudents.get(studentId).toString();
+            } else {
+                throw new Exception("No such student.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return info;
     }
 
@@ -28,7 +45,11 @@ public class Administrator {
            if (mark < 0 && mark > 5) {
                throw new Exception("Cannot give such a mark.");
            } else {
-               listOfStudents.get(studentId).addMark(mark);
+               if (listOfStudents.containsKey(studentId)) {
+                   listOfStudents.get(studentId).addMark(mark);
+               } else {
+                   throw new Exception("No such student.");
+               }
            }
        } catch (Exception e) {
            System.out.println(e.getMessage());
@@ -37,34 +58,40 @@ public class Administrator {
 
     public String getStudentInfo(int studentId) {
         String info = "";
-        Student student = listOfStudents.get(studentId);
-        if (student.isHumanitarianStudent()) {
-            info = student.getZodiacSign();
-        } else if (student.isTechnicalStudent()) {
-            if (student.wasBornOnLeapYear()) {
-                info = "Student was born on leap year.";
-            } else {
-                info = "Student was not born on leap year.";
+        try {
+            Student student = listOfStudents.get(studentId);
+            if (!listOfStudents.containsKey(studentId)) {
+                throw new Exception("No such student.");
             }
-        } else {
-            if (student.wasBornOnLeapYear()) {
-                info = "Student was born on leap year.";
+            if (student.isHumanitarianStudent()) {
+                info = student.getZodiacSign();
+            } else if (student.isTechnicalStudent()) {
+                if (student.wasBornOnLeapYear()) {
+                    info = "Student was born on leap year.";
+                } else {
+                    info = "Student was not born on leap year.";
+                }
             } else {
-                info = "Student was not born on leap year.";
+                if (student.wasBornOnLeapYear()) {
+                    info = "Student was born on leap year.";
+                } else {
+                    info = "Student was not born on leap year.";
+                }
+                info += " " + student.getZodiacSign();
             }
-            info += " " + student.getZodiacSign();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return info;
     }
 
     public String getAlphabetOrderOfStudents() {
         ArrayList<String> names = new ArrayList<String>();
-        String info = "";
         for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
             names.add(entry.getValue().getLastName());
         }
         Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
-        info = names.toString();
+        String info = names.toString();
         return info;
     }
 
