@@ -15,20 +15,11 @@ public class Administrator {
     }
 
     public void deleteStudent(int studentId) {
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getKey() == studentId) {
-                listOfStudents.remove(entry.getValue());
-            }
-        }
+        listOfStudents.remove(listOfStudents.get(studentId));
     }
 
     public String findStudent(int studentId) {
-        String info = "";
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getKey() == studentId) {
-                info = listOfStudents.get(entry.getValue()).toString();
-            }
-        }
+        String info = listOfStudents.get(studentId).toString();
         return info;
     }
 
@@ -37,11 +28,7 @@ public class Administrator {
            if (mark < 0 && mark > 5) {
                throw new Exception("Cannot give such a mark.");
            } else {
-               for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-                   if (entry.getKey() == studentId) {
-                       entry.getValue().addMark(mark);
-                   }
-               }
+               listOfStudents.get(studentId).addMark(mark);
            }
        } catch (Exception e) {
            System.out.println(e.getMessage());
@@ -50,25 +37,22 @@ public class Administrator {
 
     public String getStudentInfo(int studentId) {
         String info = "";
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getKey() == studentId) {
-                if (entry.getValue().isTechnicalStudent()) {
-                    if (entry.getValue().wasBornOnLeapYear()) {
-                        info = "Student was born on leap year.";
-                    } else {
-                        info = "Student was not born on leap year.";
-                    }
-                } else if (entry.getValue().isHumanitarianStudent()){
-                    info = entry.getValue().getZodiacSign();
-                } else {
-                    if (entry.getValue().wasBornOnLeapYear()) {
-                        info = "Student was born on leap year.";
-                    } else {
-                        info = "Student was not born on leap year.";
-                    }
-                    info += " " + entry.getValue().getZodiacSign();
-                }
+        Student student = listOfStudents.get(studentId);
+        if (student.isHumanitarianStudent()) {
+            info = student.getZodiacSign();
+        } else if (student.isTechnicalStudent()) {
+            if (student.wasBornOnLeapYear()) {
+                info = "Student was born on leap year.";
+            } else {
+                info = "Student was not born on leap year.";
             }
+        } else {
+            if (student.wasBornOnLeapYear()) {
+                info = "Student was born on leap year.";
+            } else {
+                info = "Student was not born on leap year.";
+            }
+            info += " " + student.getZodiacSign();
         }
         return info;
     }
