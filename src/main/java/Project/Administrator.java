@@ -2,8 +2,8 @@ package Project;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class Administrator {
 
@@ -42,7 +42,7 @@ public class Administrator {
 
     public void markStudent(int studentId, int mark) {
        try {
-           if (mark < 0 && mark > 5) {
+           if (mark < 0 || mark > 5) {
                throw new Exception("Cannot give such a mark.");
            } else {
                if (listOfStudents.containsKey(studentId)) {
@@ -86,7 +86,7 @@ public class Administrator {
     }
 
     public String getAlphabetOrderOfStudents() {
-        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<String> names = new ArrayList<>();
         for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
             names.add(entry.getValue().getLastName());
         }

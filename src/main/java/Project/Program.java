@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class Program {
 
-    private static final String NAME_OF_APPLICATION = "STUDENT DATABASE";
     private static final String WELCOME_MESSAGE = "\nWelcome to the student database application!";
     private static final String MENU = "1 - Add Student.\n2 - Delete Student.\n3 - Mark student.\n4 - Find Student.\n5 - Get Student Info\n"
             + "6 - Get All Students.\n7 - Get Average Of All Students.\n8 - Get Average Of All Technical Students.\n9 - Get Average Of All Humanitarian Students.\n"
