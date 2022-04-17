@@ -87,8 +87,8 @@ public class Administrator {
 
     public String getAlphabetOrderOfStudents() {
         ArrayList<String> names = new ArrayList<>();
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            names.add(entry.getValue().getLastName());
+        for (Student student : listOfStudents.values()) {
+            names.add(student.getLastName());
         }
         Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
         String info = names.toString();
@@ -97,9 +97,9 @@ public class Administrator {
 
     public String getAverageOfTechnicalStudents() {
         String info = "";
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getValue().isTechnicalStudent()) {
-                info += entry.getValue().getAverage() + " , ";
+        for (Student student : listOfStudents.values()) {
+            if (student.isTechnicalStudent()) {
+                info += student.getAverage() + " , ";
             }
         }
         return info;
@@ -107,9 +107,9 @@ public class Administrator {
 
     public String getAverageOfHumanitarianStudents() {
         String info = "";
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getValue().isHumanitarianStudent()) {
-                info += entry.getValue().getAverage() + " , ";
+        for (Student student : listOfStudents.values()) {
+            if (student.isHumanitarianStudent()) {
+                info += student.getAverage() + " , ";
             }
         }
         return info;
@@ -117,16 +117,16 @@ public class Administrator {
 
     public String getAverageOfAllStudents() {
         String info = "";
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            info += entry.getValue().getAverage() + " , ";
+        for (Student student : listOfStudents.values()) {
+            info += student.getAverage() + " , ";
         }
         return info;
     }
 
     public int getNumberOfTechnicalStudents() {
         int sum = 0;
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getValue().isTechnicalStudent()) {
+        for (Student student : listOfStudents.values()) {
+            if (student.isTechnicalStudent()) {
                 sum++;
             }
         }
@@ -135,8 +135,8 @@ public class Administrator {
 
     public int getNumberOfHumanitarianStudents() {
         int sum = 0;
-        for (HashMap.Entry<Integer, Student> entry : listOfStudents.entrySet()) {
-            if (entry.getValue().isHumanitarianStudent()) {
+        for (Student student : listOfStudents.values()) {
+            if (student.isHumanitarianStudent()) {
                 sum++;
             }
         }

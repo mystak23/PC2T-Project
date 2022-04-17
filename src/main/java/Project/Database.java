@@ -2,12 +2,11 @@ package Project;
 
 import java.util.Scanner;
 
-public class Database implements IGraphicalInterface {
+public class Database {
 
     private Scanner scanner;
     private Administrator administrator;
 
-    @Override
     public void addStudent() {
         System.out.println("First name: ");
         String firstName = scanner.nextLine();
@@ -38,7 +37,6 @@ public class Database implements IGraphicalInterface {
         }
     }
 
-    @Override
     public void markStudent() {
         System.out.println("Enter ID: ");
         int studentId = scanner.nextInt();
@@ -48,7 +46,6 @@ public class Database implements IGraphicalInterface {
         System.out.println("Student successfully marked.");
     }
 
-    @Override
     public void deleteStudent() {
         System.out.println("Enter ID: ");
         int studentId = scanner.nextInt();
@@ -56,7 +53,6 @@ public class Database implements IGraphicalInterface {
         System.out.println("Student successfully deleted.");
     }
 
-    @Override
     public void findStudent() {
         System.out.println("Enter ID: ");
         int studentId = scanner.nextInt();
@@ -64,7 +60,6 @@ public class Database implements IGraphicalInterface {
         System.out.println("Student successfully found. Info: \n");
     }
 
-    @Override
     public void getStudentInfo() {
         System.out.println("Enter ID: ");
         int studentId = scanner.nextInt();
@@ -72,36 +67,30 @@ public class Database implements IGraphicalInterface {
         administrator.getStudentInfo(studentId);
     }
 
-    @Override
     public void getAllStudents() {
         System.out.println("All students: \n");
         administrator.getAlphabetOrderOfStudents();
     }
 
-    @Override
     public void getAverageOfTechnicalStudents() {
         System.out.println("Average of technical students: \n");
         administrator.getAverageOfTechnicalStudents();
     }
 
-    @Override
     public void getAverageOfHumanitarianStudents() {
         System.out.println("Average of humanitarian students: \n");
         administrator.getAverageOfHumanitarianStudents();
     }
 
-    @Override
     public void getAverageOfAllStudents() {
         System.out.println("Average of all students: \n");
         administrator.getAverageOfAllStudents();
     }
 
-    @Override
     public void getCountOfTechnicalStudents() {
         System.out.println("There are " + administrator.getNumberOfTechnicalStudents() + " technical students.");
     }
 
-    @Override
     public void getCountOfHumanitarianStudents() {
         System.out.println("There are " + administrator.getNumberOfHumanitarianStudents() + " humanitarian students.");
     }

@@ -1,9 +1,8 @@
 package Project;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.*;
 
-public class Student {
+public class Student implements IHashable {
 
     private int studentId;
     private String firstName;
